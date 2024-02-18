@@ -1,0 +1,211 @@
+-- -----------------------------------------------------------------------------
+--
+--              SCRIPT DE CREATION DES TABLES
+--
+-- -----------------------------------------------------------------------------
+
+
+-- Création de la table EMPLOYE
+CREATE TABLE EMPLOYE (
+    ID_Employe INT PRIMARY KEY,
+    Nom_Employe VARCHAR(255),
+    Prenom_Employe VARCHAR(255),
+    Poste_Employe VARCHAR(255),
+    Adresse_Employe VARCHAR(255),
+    Numero_de_Telephone_Employe VARCHAR(10) CHECK (REGEXP_LIKE(Numero_de_Telephone_Employe, '^\d{10}$')),
+    Mail_Employe VARCHAR(255) CHECK (REGEXP_LIKE(Mail_Employe, '^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Z|a-z]{2,3}$'))
+);
+
+-- Création de la table HORAIRE
+CREATE TABLE HORAIRE (
+    ID_Horaire INT PRIMARY KEY,
+    Heure_Depart VARCHAR2(5) CHECK (REGEXP_LIKE(Heure_Depart, '^\d{2}:\d{2}$')),
+    Heure_Arrivee VARCHAR2(5) CHECK (REGEXP_LIKE(Heure_Arrivee, '^\d{2}:\d{2}$')),
+    Date_Debut_Validite DATE,
+    Date_Fin_Validite DATE,
+    Jour_de_Semaine VARCHAR(20)
+);
+
+-- Création de la table ITINERAIRE
+CREATE TABLE ITINERAIRE (
+    ID_Itineraire INT PRIMARY KEY,
+    Description_Itineraire VARCHAR(255),
+    Duree_Balade INT,
+    Lieu_Depart VARCHAR(255),
+    Lieu_Arrivee VARCHAR(255)
+);
+
+-- Création de la table RESERVATION
+CREATE TABLE RESERVATION (
+    ID_Reservation INT PRIMARY KEY,
+    Date_Reservation DATE,
+    Nb_Voyageur INT,
+    Prix_Total DECIMAL(10, 2) CHECK (Prix_Total >= 0),
+    Statut_de_Paiement VARCHAR(20)
+);
+
+-- Création de la table PASSAGER
+CREATE TABLE PASSAGER (
+    ID_Passager INT PRIMARY KEY,
+    Nom_Passager VARCHAR(255),
+    Prenom_Passager VARCHAR(255),
+    Date_de_Naissance_Passager DATE,
+    Adresse_Passager VARCHAR(255),
+    Code_Postal_Passager INT CHECK(Code_Postal_Passager >= 10000 AND Code_Postal_Passager <= 99999),
+    Numero_de_Telephone_Passager VARCHAR(10) CHECK (REGEXP_LIKE(Numero_de_Telephone_Passager, '^\d{10}$')),
+    Mail_Passager VARCHAR(255) CHECK (REGEXP_LIKE(Mail_Passager, '^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Z|a-z]{2,3}$'))
+);
+
+
+-- Création de la table VOYAGE_PASSAGER
+CREATE TABLE TRAJET(
+    ID_Trajet INT PRIMARY KEY,
+    Date_Trajet Date
+);
+
+-- Création de la table VOYAGE_PASSAGER
+CREATE TABLE VOYAGE_PASSAGER (
+    ID_Trajet INT,
+    ID_Passager INT,
+    PRIMARY KEY (ID_Trajet, ID_Passager),
+    FOREIGN KEY (ID_Trajet) REFERENCES TRAJET(ID_Trajet),
+    FOREIGN KEY (ID_Passager) REFERENCES PASSAGER(ID_Passager)
+);
+
+-- Création de la table FACTURE
+CREATE TABLE FACTURE (
+    ID_Facture INT PRIMARY KEY,
+    Date_Paiement DATE,
+    Mode_de_Paiement VARCHAR(255)
+);
+
+-- Création de la table FACTURE_PASSAGER
+CREATE TABLE FACTURE_PASSAGER (
+    ID_Passager INT,
+    ID_Facture INT,
+    PRIMARY KEY (ID_Passager, ID_Facture),
+    FOREIGN KEY (ID_Passager) REFERENCES PASSAGER(ID_Passager),
+    FOREIGN KEY (ID_Facture) REFERENCES FACTURE(ID_Facture)
+);
+
+-- Création de la table BATEAU
+CREATE TABLE BATEAU (
+    ID_Bateau INT PRIMARY KEY,
+    Nom_Bateau VARCHAR(255),
+    Capacite_Max INT,
+    Description_Bateau VARCHAR(255)
+);
+
+-- Création de la table HORAIRE_BATEAU
+CREATE TABLE HORAIRE_BATEAU (
+    ID_Bateau INT,
+    ID_Horaire INT,
+    PRIMARY KEY (ID_Bateau, ID_Horaire),
+    FOREIGN KEY (ID_Bateau) REFERENCES BATEAU(ID_Bateau),
+    FOREIGN KEY (ID_Horaire) REFERENCES HORAIRE(ID_Horaire)
+);
+
+-- Création de la table PASSAGE_BATEAU
+CREATE TABLE PASSAGE_BATEAU (
+    ID_Bateau INT,
+    ID_Trajet INT,
+    PRIMARY KEY (ID_Bateau, ID_Trajet),
+    FOREIGN KEY (ID_Bateau) REFERENCES BATEAU(ID_Bateau),
+    FOREIGN KEY (ID_Trajet) REFERENCES TRAJET(ID_Trajet)
+);
+
+
+
+
+-- -----------------------------------------------------------------------------
+--
+--              SCRIPT INSERTION DES DONNEES
+--
+-- -----------------------------------------------------------------------------
+
+-- Insertion de données dans la table EMPLOYE
+INSERT INTO EMPLOYE VALUES (1, 'Dupont', 'Jean', 'Manager', '123 Rue de la République', '1234567890', 'jean.dupont@email.com');
+INSERT INTO EMPLOYE VALUES (2, 'Martin', 'Sophie', 'Assistant', '456 Avenue des Fleurs', '9876543210', 'sophie.martin@email.com');
+INSERT INTO EMPLOYE VALUES (3, 'Dubois', 'Pierre', 'Technicien', '789 Rue du Commerce', '4567890123', 'pierre.dubois@email.com');
+INSERT INTO EMPLOYE VALUES (4, 'Lefevre', 'Marie', 'Secrétaire', '321 Boulevard Principal', '7890123456', 'marie.lefevre@email.com');
+INSERT INTO EMPLOYE VALUES (5, 'Moreau', 'Luc', 'Ingénieur', '654 Avenue Centrale', '0123456789', 'luc.moreau@email.com');
+
+-- Insertion de données dans la table HORAIRE
+INSERT INTO HORAIRE VALUES (1, '08:00', '12:00', TO_DATE('01/01/2023', 'DD/MM/YYYY'), TO_DATE('02/01/2023', 'DD/MM/YYYY'), 'Lundi');
+INSERT INTO HORAIRE VALUES (2, '13:00', '17:00', TO_DATE('03/01/2023', 'DD/MM/YYYY'), TO_DATE('04/01/2023', 'DD/MM/YYYY'), 'Mardi');
+INSERT INTO HORAIRE VALUES (3, '09:30', '14:30', TO_DATE('05/01/2023', 'DD/MM/YYYY'), TO_DATE('06/01/2023', 'DD/MM/YYYY'), 'Mercredi');
+INSERT INTO HORAIRE VALUES (4, '10:00', '15:00', TO_DATE('07/01/2023', 'DD/MM/YYYY'), TO_DATE('08/01/2023', 'DD/MM/YYYY'), 'Jeudi');
+INSERT INTO HORAIRE VALUES (5, '11:30', '16:30', TO_DATE('09/01/2023', 'DD/MM/YYYY'), TO_DATE('10/01/2023', 'DD/MM/YYYY'), 'Vendredi');
+
+-- Insertion de données dans la table ITINERAIRE
+INSERT INTO ITINERAIRE VALUES (1, 'Parcours A', 120, 'Port A', 'Port B');
+INSERT INTO ITINERAIRE VALUES (2, 'Parcours B', 90, 'Port C', 'Port D');
+INSERT INTO ITINERAIRE VALUES (3, 'Parcours C', 150, 'Port E', 'Port F');
+INSERT INTO ITINERAIRE VALUES (4, 'Parcours D', 180, 'Port G', 'Port H');
+INSERT INTO ITINERAIRE VALUES (5, 'Parcours E', 60, 'Port I', 'Port J');
+
+-- Insertion de données dans la table RESERVATION
+INSERT INTO RESERVATION VALUES (1, TO_DATE('01/02/2023', 'DD/MM/YYYY'), 2, 150.00, 'Payée');
+INSERT INTO RESERVATION VALUES (2, TO_DATE('02/02/2023', 'DD/MM/YYYY'), 3, 200.50, 'Non payée');
+INSERT INTO RESERVATION VALUES (3, TO_DATE('03/02/2023', 'DD/MM/YYYY'), 1, 100.00, 'Payée');
+INSERT INTO RESERVATION VALUES (4, TO_DATE('04/02/2023', 'DD/MM/YYYY'), 4, 250.75, 'Payée');
+INSERT INTO RESERVATION VALUES (5, TO_DATE('05/02/2023', 'DD/MM/YYYY'), 2, 120.50, 'Non payée');
+
+-- Insertion de données dans la table PASSAGER
+INSERT INTO PASSAGER VALUES (1, 'Leclerc', 'Anne', TO_DATE('15/05/1990', 'DD/MM/YYYY'), '789 Rue de la Liberté', 75000, '9876543210', 'anne.leclerc@email.com');
+INSERT INTO PASSAGER VALUES (2, 'Garcia', 'Carlos', TO_DATE('20/07/1985', 'DD/MM/YYYY'), '456 Avenue des Artistes', 69000, '6543210987', 'carlos.garcia@email.com');
+INSERT INTO PASSAGER VALUES (3, 'Wang', 'Mei', TO_DATE('10/12/1992', 'DD/MM/YYYY'), '123 Rue de la Joie', 67000, '1234567890', 'mei.wang@email.com');
+INSERT INTO PASSAGER VALUES (4, 'Johnson', 'John', TO_DATE('05/03/1980', 'DD/MM/YYYY'), '654 Avenue du Bonheur', 68000, '7890123456', 'john.johnson@email.com');
+INSERT INTO PASSAGER VALUES (5, 'Dubois', 'Isabelle', TO_DATE('25/09/1988', 'DD/MM/YYYY'), '321 Boulevard de la Paix', 66000, '0123456789', 'isabelle.dubois@email.com');
+
+-- Insertion de données dans la table TRAJET
+INSERT INTO TRAJET VALUES (1, TO_DATE('01/02/2023', 'DD/MM/YYYY'));
+INSERT INTO TRAJET VALUES (2, TO_DATE('02/02/2023', 'DD/MM/YYYY'));
+INSERT INTO TRAJET VALUES (3, TO_DATE('03/02/2023', 'DD/MM/YYYY'));
+INSERT INTO TRAJET VALUES (4, TO_DATE('04/02/2023', 'DD/MM/YYYY'));
+INSERT INTO TRAJET VALUES (5, TO_DATE('05/02/2023', 'DD/MM/YYYY'));
+
+-- Insertion de données dans la table VOYAGE_PASSAGER
+INSERT INTO VOYAGE_PASSAGER VALUES (1, 1);
+INSERT INTO VOYAGE_PASSAGER VALUES (2, 2);
+INSERT INTO VOYAGE_PASSAGER VALUES (3, 3);
+INSERT INTO VOYAGE_PASSAGER VALUES (4, 4);
+INSERT INTO VOYAGE_PASSAGER VALUES (5, 5);
+
+-- Insertion de données dans la table FACTURE
+INSERT INTO FACTURE VALUES (1, TO_DATE('01/02/2023', 'DD/MM/YYYY'), 'Carte de crédit');
+INSERT INTO FACTURE VALUES (2, TO_DATE('02/02/2023', 'DD/MM/YYYY'), 'Virement bancaire');
+INSERT INTO FACTURE VALUES (3, TO_DATE('03/02/2023', 'DD/MM/YYYY'), 'PayPal');
+INSERT INTO FACTURE VALUES (4, TO_DATE('04/02/2023', 'DD/MM/YYYY'), 'Espèces');
+INSERT INTO FACTURE VALUES (5, TO_DATE('05/02/2023', 'DD/MM/YYYY'), 'Chèque');
+
+-- Insertion de données dans la table FACTURE_PASSAGER
+INSERT INTO FACTURE_PASSAGER VALUES (1, 1);
+INSERT INTO FACTURE_PASSAGER VALUES (2, 2);
+INSERT INTO FACTURE_PASSAGER VALUES (3, 3);
+INSERT INTO FACTURE_PASSAGER VALUES (4, 4);
+INSERT INTO FACTURE_PASSAGER VALUES (5, 5);
+
+-- Insertion de données dans la table BATEAU
+INSERT INTO BATEAU VALUES (1, 'Ocean Explorer', 200, 'Bateau de croisière de luxe');
+INSERT INTO BATEAU VALUES (2, 'River Adventure', 150, 'Bateau fluvial avec vue panoramique');
+INSERT INTO BATEAU VALUES (3, 'Island Hopper', 180, 'Bateau idéal pour explorer les îles');
+INSERT INTO BATEAU VALUES (4, 'Sunset Serenity', 120, 'Bateau pour des croisières au coucher du soleil');
+INSERT INTO BATEAU VALUES (5, 'Harbor Voyager', 160, 'Bateau moderne avec équipements haut de gamme');
+
+-- Insertion de données dans la table HORAIRE_BATEAU
+INSERT INTO HORAIRE_BATEAU VALUES (1, 1);
+INSERT INTO HORAIRE_BATEAU VALUES (2, 2);
+INSERT INTO HORAIRE_BATEAU VALUES (3, 3);
+INSERT INTO HORAIRE_BATEAU VALUES (4, 4);
+INSERT INTO HORAIRE_BATEAU VALUES (5, 5);
+
+-- Insertion de données dans la table PASSAGE_BATEAU
+INSERT INTO PASSAGE_BATEAU VALUES (1, 1);
+INSERT INTO PASSAGE_BATEAU VALUES (2, 2);
+INSERT INTO PASSAGE_BATEAU VALUES (3, 3);
+INSERT INTO PASSAGE_BATEAU VALUES (4, 4);
+INSERT INTO PASSAGE_BATEAU VALUES (5, 5);
+
+
+
