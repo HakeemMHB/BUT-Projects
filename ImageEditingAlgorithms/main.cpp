@@ -1,7 +1,7 @@
 #include <string>
 #include <iostream>
 #include <vector>
-#include "S102.h"
+#include "imageAlgorithms.h"
 #include <fstream>
 
 int main(){
