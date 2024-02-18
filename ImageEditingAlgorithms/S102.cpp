@@ -1,12 +1,12 @@
 #include <string>
 #include <iostream>
 #include <vector>
-#include "S102.h"
+#include "imageAlgorithms.h"
 #include <fstream>
 
 
 /**
-(QUESTION 2) Constructeur renvoyant une erreur si les vecteurs 2D n'ont pas la même taille
+(QUESTION 2) Constructeur renvoyant une erreur si les vecteurs 2D n'ont pas la mÃªme taille
 **/
 Image::Image(vector<vector<int>> red, vector<vector<int>> green, vector<vector<int>> blue){
     int r, g, b;
@@ -34,7 +34,7 @@ Image::Image(vector<vector<int>> red, vector<vector<int>> green, vector<vector<i
 
 
 /**
-    Méthode getLongueur renvoyant la longueur de l'image
+    MÃ©thode getLongueur renvoyant la longueur de l'image
 **/
 int Image::getLongueur() const{
     return(_longueur);
@@ -42,7 +42,7 @@ int Image::getLongueur() const{
 
 
 /**
-    Méthode getLargeur renvoyant la largeur de l'image
+    MÃ©thode getLargeur renvoyant la largeur de l'image
 **/
 int Image::getLargeur() const{
     return(_largeur);
@@ -50,7 +50,7 @@ int Image::getLargeur() const{
 
 
 /**
-    Méthode getRed renvoyant le tab 2D rouge
+    MÃ©thode getRed renvoyant le tab 2D rouge
 **/
 vector<vector<int>> Image::getRed() const{
     return(_red);
@@ -58,7 +58,7 @@ vector<vector<int>> Image::getRed() const{
 
 
 /**
-    Méthode getGreen renvoyant le tab 2D vert
+    MÃ©thode getGreen renvoyant le tab 2D vert
 **/
 vector<vector<int>> Image::getGreen() const{
     return(_green);
@@ -66,7 +66,7 @@ vector<vector<int>> Image::getGreen() const{
 
 
 /**
-    Méthode getBlue renvoyant le tab 2D bleu
+    MÃ©thode getBlue renvoyant le tab 2D bleu
 **/
 vector<vector<int>> Image::getBlue() const{
     return(_blue);
@@ -74,7 +74,7 @@ vector<vector<int>> Image::getBlue() const{
 
 
 /**
-Méthode permettant l'affichage de chacun des vecteurs de l'image
+MÃ©thode permettant l'affichage de chacun des vecteurs de l'image
 **/
 void Image::affiche(){
     cout<<"Les vecteurs rouges :"<<endl;
@@ -101,7 +101,7 @@ void Image::affiche(){
 
 
 /**
-    Méthode pour changer la valeur d'un pixel
+    MÃ©thode pour changer la valeur d'un pixel
 **/
 void Image::changePixel(int i, int j, int rouge, int vert, int bleu){
         _red[i][j] = rouge;
@@ -111,9 +111,9 @@ void Image::changePixel(int i, int j, int rouge, int vert, int bleu){
 
 
 /**
-(QUESTION 3) Méthode renvoyant une nouvelle image
+(QUESTION 3) MÃ©thode renvoyant une nouvelle image
 en gardant uniquement le rouge de l'image de base,
-tous les autres vecteurs bleu et verts sont à 0
+tous les autres vecteurs bleu et verts sont Ã  0
 **/
 
 Image Image::composanteRouge() const{
@@ -128,7 +128,7 @@ Image Image::composanteRouge() const{
 }
 
 /**
-(QUESTION 4) Méthode renvoyant true si le code RVB donné est présent dans l'image
+(QUESTION 4) MÃ©thode renvoyant true si le code RVB donnÃ© est prÃ©sent dans l'image
 **/
 
 bool Image::detection(int r, int g, int b){
@@ -143,7 +143,7 @@ bool Image::detection(int r, int g, int b){
 
 
 /**
-(QUESTION 5) Méthode renvoyant une nouvelle image grise en faisant la moyenne
+(QUESTION 5) MÃ©thode renvoyant une nouvelle image grise en faisant la moyenne
 du code RGB pixel par pixel
 **/
 Image Image::niveauxGris() const{
@@ -170,8 +170,8 @@ Image Image::niveauxGris() const{
 
 
 /**
-(QUESTION 7) Méthode renvoyant une nouvelle image, si le niveau de gris d'un pixel est
-au dessus d'un seuil passé en paramètre, le pixel devient noir. Il est blanc
+(QUESTION 7) MÃ©thode renvoyant une nouvelle image, si le niveau de gris d'un pixel est
+au dessus d'un seuil passÃ© en paramÃ¨tre, le pixel devient noir. Il est blanc
 dans le cas inverse
 **/
 Image Image::noirEtBlanc(int seuil) const{
@@ -195,8 +195,8 @@ Image Image::noirEtBlanc(int seuil) const{
 }
 
 /**
-(QUESTION 8) Méthode renvoyant un vecteur, pour chaque niveau de gris d'une image,
-il y a le nombre de fois où il est présent et son code RGB
+(QUESTION 8) MÃ©thode renvoyant un vecteur, pour chaque niveau de gris d'une image,
+il y a le nombre de fois oÃ¹ il est prÃ©sent et son code RGB
 **/
 
 vector<int> Image::histogrammeGris() const{
@@ -213,7 +213,7 @@ vector<int> Image::histogrammeGris() const{
 }
 
 /**
-Fonction utilisée pour afficher un unique vecteur et utile pour histogrammesGris
+Fonction utilisÃ©e pour afficher un unique vecteur et utile pour histogrammesGris
 **/
 
 void affiche(vector<int> &histo){
@@ -225,7 +225,7 @@ void affiche(vector<int> &histo){
 
 
 /**
-(QUESTION 10) Méthode renvoyant une nouvelle image dont la luminosité a été modifié
+(QUESTION 10) MÃ©thode renvoyant une nouvelle image dont la luminositÃ© a Ã©tÃ© modifiÃ©
 en multipliant chaque code RGB d'un pixel par une constante
 **/
 Image Image::luminosity(float factor) const{
@@ -265,7 +265,7 @@ Image Image::luminosity(float factor) const{
 
 
 /**
-(QUESTION 10) Méthode renvoyant une nouvelle image 1.5 fois plus lumineuse que celle de base
+(QUESTION 10) MÃ©thode renvoyant une nouvelle image 1.5 fois plus lumineuse que celle de base
 **/
 Image Image::luminosityDOWN() const{
     return luminosity(0.5);
@@ -273,7 +273,7 @@ Image Image::luminosityDOWN() const{
 
 
 /**
-(QUESTION 10) Méthode renvoyant une nouvelle image 0.5 fois moins lumineuse que celle de base
+(QUESTION 10) MÃ©thode renvoyant une nouvelle image 0.5 fois moins lumineuse que celle de base
 **/
 Image Image::luminosityUP() const{
     return luminosity(1.5);
@@ -281,10 +281,10 @@ Image Image::luminosityUP() const{
 
 
 /**
-(QUESTION 11) Méthode renvoyant une nouvelle image avec un contraste modifié,
+(QUESTION 11) MÃ©thode renvoyant une nouvelle image avec un contraste modifiÃ©,
 en prenant chaque valeur d'un pixel, en retirant 128 puis en le multipliant par
-une constante pour au final ajouter 128. Si le résultat dépasse 255, c'est tout de
-même 255 qui sera ajouté. Même chose avec 0.
+une constante pour au final ajouter 128. Si le rÃ©sultat dÃ©passe 255, c'est tout de
+mÃªme 255 qui sera ajoutÃ©. MÃªme chose avec 0.
 **/
 Image Image::contraste(float factor) const{
     vector<vector<int>> rouge;
@@ -337,7 +337,7 @@ Image Image::contraste(float factor) const{
 
 
 /**
-(QUESTION 11) Méthode renvoyant une nouvelle image avec un contraste 1.5 fois plus élevé que celle de base
+(QUESTION 11) MÃ©thode renvoyant une nouvelle image avec un contraste 1.5 fois plus Ã©levÃ© que celle de base
 **/
 Image Image::contrasteUP() const{
     return(contraste(1.5));
@@ -345,7 +345,7 @@ Image Image::contrasteUP() const{
 
 
 /**
-(QUESTION 11) Méthode renvoyant une nouvelle image avec un contraste 0.5 fois moins élevé que celle de base
+(QUESTION 11) MÃ©thode renvoyant une nouvelle image avec un contraste 0.5 fois moins Ã©levÃ© que celle de base
 **/
 Image Image::contrasteDOWN() const{
     return(contraste(0.5));
@@ -361,14 +361,14 @@ FIN DE LA PARTIE 1
 
 /**
 
-DÉBUT DE LA PARTIE 2
+DÃ‰BUT DE LA PARTIE 2
 
 **/
 
 
 /**
-(QUESTION 1, 5) Fonction permettant de renvoyer une nouvelle image modifiée
-selon les choix de l'utilisateur avec toutes les méthodes disponibles
+(QUESTION 1, 5) Fonction permettant de renvoyer une nouvelle image modifiÃ©e
+selon les choix de l'utilisateur avec toutes les mÃ©thodes disponibles
 **/
 void menu(string &nomFichier, vector<int> &choix){
     int c = 1;
@@ -383,7 +383,7 @@ void menu(string &nomFichier, vector<int> &choix){
 
     while(c != 0){
         if(prem) choix.push_back(c);
-        cout << "Quelle modification souhaitez-vous appoter à votre image ?" << endl;
+        cout << "Quelle modification souhaitez-vous appoter Ã  votre image ?" << endl;
         cout<<endl;
         cout << "Pour composanteRouge, entrez 1" << endl;
         cout<<endl;
@@ -403,7 +403,7 @@ void menu(string &nomFichier, vector<int> &choix){
         cout<<endl;
         cout << "Pour agrandissement, entrez 12" << endl;
         cout<<endl;
-        cout << "Pour retrécissement, entrez 13" << endl;
+        cout << "Pour retrÃ©cissement, entrez 13" << endl;
         cout<<endl;
         cout << "Pour QUITTER, entrez 0" << endl;
         cin >> c;
@@ -427,8 +427,8 @@ void loadPicture(const string &picture, vector<vector<int>> &red,
 {
     // Declaration des variables
     string line; // pour recuperer les lignes du fichier image au format .ppm, qui est code en ASCII.
-    string format; //pour recuperer le format de l'image : celui-ci doit être de la forme P3
-    string name; // au cas où l'utilisateur se trompe dans le nom de l'image a charger, on redemande le nom.
+    string format; //pour recuperer le format de l'image : celui-ci doit Ãªtre de la forme P3
+    string name; // au cas oÃ¹ l'utilisateur se trompe dans le nom de l'image a charger, on redemande le nom.
     int taille;
     vector <int> mypixels; // pour recuperer les donnees du fichier de maniere lineaire. On repartira ensuite ces donnees dans les tableaux correspondants
     ifstream entree; // Declaration d'un "flux" qui permettra ensuite de lire les donnees de l'image.
@@ -485,7 +485,7 @@ void loadPicture(const string &picture, vector<vector<int>> &red,
     // dans l'ordre de lecture puis ensuite on les repartira dans les differents tableaux.
     //Les donnees stockees dans mypixels sont de la forme RGB RGB RGB ....
     // Il faudra donc repartir les valeurs R correspondant a la composante rouge de l'image
-    // dans le tableau red, de même pour G et B.
+    // dans le tableau red, de mÃªme pour G et B.
     int pix;
     mypixels.resize(3*taille*hauteur); // taille fixe : on alloue une fois pour toutes
     for (int i = 0; i < 3*taille*hauteur; i++){
@@ -505,7 +505,7 @@ void loadPicture(const string &picture, vector<vector<int>> &red,
     blue.resize(hauteur);
     for (int i = 0; i < hauteur; i++){
       vector <int> ligneR(taille);
-      vector <int> ligneB(taille);  // les lignes ont toutes la même taille
+      vector <int> ligneB(taille);  // les lignes ont toutes la mÃªme taille
       vector <int> ligneG(taille);
       for (int j = 0; j < taille; j++){
             val =  mypixels[3*j + 3*taille*i];
@@ -526,7 +526,7 @@ void loadPicture(const string &picture, vector<vector<int>> &red,
 
 
  /**
- (QUESTION 2) Constructeur créant une image à partir d'un fichier au format ppm
+ (QUESTION 2) Constructeur crÃ©ant une image Ã  partir d'un fichier au format ppm
  **/
 Image::Image(string nomImg){
     loadPicture(nomImg, _red, _blue, _green);
@@ -535,7 +535,7 @@ Image::Image(string nomImg){
 }
 
 /**
-(QUESTION 3) Méthode permettant la création d'un fichier contenant l'image au format ppm
+(QUESTION 3) MÃ©thode permettant la crÃ©ation d'un fichier contenant l'image au format ppm
 **/
 void Image::creer(const string &nomFichier){
     ofstream entree;
@@ -555,8 +555,8 @@ void Image::creer(const string &nomFichier){
 
 
 /**
-(QUESTION 4, 5) Méthode appliquant les modifications demandées par l'utilisateur
-dans la méthode menu
+(QUESTION 4, 5) MÃ©thode appliquant les modifications demandÃ©es par l'utilisateur
+dans la mÃ©thode menu
 **/
 Image Image::appliquerFiltre(vector<int> choix){
     Image newImage = *this;
@@ -609,12 +609,12 @@ FIN DE LA PARTIE 2
 
 /**
 
-DÉBUT DE LA PARTIE 3
+DÃ‰BUT DE LA PARTIE 3
 
 **/
 
 /**
-(QUESTION 1) Méthode rognant une image au niveau de la droite en vérifiant que c'est possible
+(QUESTION 1) MÃ©thode rognant une image au niveau de la droite en vÃ©rifiant que c'est possible
 **/
 Image Image::rognerD(int num){
     if(num > _longueur){
@@ -641,7 +641,7 @@ Image Image::rognerD(int num){
 
 
 /**
-(QUESTION 1) Méthode rognant une image au niveau de la gauche en vérifiant que c'est possible
+(QUESTION 1) MÃ©thode rognant une image au niveau de la gauche en vÃ©rifiant que c'est possible
 **/
 Image Image::rognerG(int num){
     if(num > _longueur){
@@ -668,7 +668,7 @@ Image Image::rognerG(int num){
 
 
 /**
-(QUESTION 1) Méthode rognant une image au niveau du haut en vérifiant que c'est possible
+(QUESTION 1) MÃ©thode rognant une image au niveau du haut en vÃ©rifiant que c'est possible
 **/
 Image Image::rognerH(int num){
     if(num > _largeur){
@@ -697,7 +697,7 @@ Image Image::rognerH(int num){
 
 
 /**
-(QUESTION 1) Méthode rognant une image au niveau du bas en vérifiant que c'est possible
+(QUESTION 1) MÃ©thode rognant une image au niveau du bas en vÃ©rifiant que c'est possible
 **/
 Image Image::rognerB(int num){
     if(num > _largeur){
@@ -726,7 +726,7 @@ Image Image::rognerB(int num){
 
 
 /**
-(QUESTION 2) et (QUESTION 3) Méthode rognant une image vers la gauche
+(QUESTION 2) et (QUESTION 3) MÃ©thode rognant une image vers la gauche
 **/
 Image Image::rotationG() const {
     vector<vector<int>> rouge;
@@ -749,10 +749,10 @@ Image Image::rotationG() const {
 
 
 /**
-(QUESTION 2) et (QUESTION 3) Méthode rognant une image vers la droite
+(QUESTION 2) et (QUESTION 3) MÃ©thode rognant une image vers la droite
 **/
 Image Image::rotationD() const {
-    // Création de la nouvelle image (les dimensions sont inversées)
+    // CrÃ©ation de la nouvelle image (les dimensions sont inversÃ©es)
     vector<vector<int>> rouge;
     vector<vector<int>> vert;
     vector<vector<int>> bleu;
@@ -774,10 +774,10 @@ Image Image::rotationD() const {
 
 
 /**
-(QUESTION 4) Méthode faisant une symétrie horizontale sur une image
+(QUESTION 4) MÃ©thode faisant une symÃ©trie horizontale sur une image
 **/
 Image Image::retournementH() const {
-    // Création de la nouvelle image (retournement horizontal)
+    // CrÃ©ation de la nouvelle image (retournement horizontal)
     vector<vector<int>> rouge;
     vector<vector<int>> vert;
     vector<vector<int>> bleu;
@@ -799,10 +799,10 @@ Image Image::retournementH() const {
 
 
 /**
-(QUESTION 4) Méthode faisant une symétrie verticale une image
+(QUESTION 4) MÃ©thode faisant une symÃ©trie verticale une image
 **/
 Image Image::retournementV() const {
-    // Création de la nouvelle image (retournement vertical)
+    // CrÃ©ation de la nouvelle image (retournement vertical)
     vector<vector<int>> newRed;
     vector<vector<int>> newGreen;
     vector<vector<int>> newBlue;
@@ -824,7 +824,7 @@ Image Image::retournementV() const {
 
 
 /**
-(QUESTION 5) Méthode renvoyant une nouvelle image num fois plus grande
+(QUESTION 5) MÃ©thode renvoyant une nouvelle image num fois plus grande
 **/
 Image Image::agrandissement(int num)const{
     vector<vector<int>> red;
@@ -853,12 +853,12 @@ Image Image::agrandissement(int num)const{
 
 
 /**
-(QUESTION 6) Méthode renvoyant une nouvelle image à partir d'une image (carré ou non)
-où chaque pixel équivaut à un carré num x num de l'image de base
+(QUESTION 6) MÃ©thode renvoyant une nouvelle image Ã  partir d'une image (carrÃ© ou non)
+oÃ¹ chaque pixel Ã©quivaut Ã  un carrÃ© num x num de l'image de base
 **/
 Image Image::retrecissement(int num)const{
     while(num > _largeur || num > _longueur){
-        cout<<"Impossible d'autant reduire l'image. Veuillez donner un nombre inférieur à "<<_largeur<<" et "<<_longueur<<endl;
+        cout<<"Impossible d'autant reduire l'image. Veuillez donner un nombre infÃ©rieur Ã  "<<_largeur<<" et "<<_longueur<<endl;
         cin>>num;
     }
     vector<vector<int>> red;
@@ -910,7 +910,7 @@ FIN DE LA PARTIE 3
 
 /**
 
-DÉBUT DE LA PARTIE 4
+DÃ‰BUT DE LA PARTIE 4
 
 **/
 
@@ -924,7 +924,7 @@ Filtre::Filtre(vector<vector<float>> action, int rayon){
 
 
 /**
-    (Question 1) Méthode application pour appliquer un filtre à une image
+    (Question 1) MÃ©thode application pour appliquer un filtre Ã  une image
 **/
 Image Filtre::application(const Image &img) const {
         Image imageFiltree(img);
