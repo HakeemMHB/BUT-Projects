@@ -1,0 +1,93 @@
+.btn-proposition {
+  position: absolute;
+  width: 90%;
+  top: 75%;
+}
+
+.card-header {
+  margin: 0;
+  display: flex;
+  gap: 15px;
+  margin-top: 20px;
+  height: 75px;
+}
+
+.card-header h2 {
+  margin: 0;
+}
+
+.line {
+  margin-top: 10px;
+  width: 100%;
+  height: 2px;
+  border-radius: 10px;
+  background-color: #000000;
+}
+
+.etiquette {
+  margin-top: 5px;
+  width: fit-content;
+  height: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: goldenrod;
+  border-radius: 25px;
+  padding: 8px 10px;
+  font-family: "Lexend", serif;
+}
+
+.etiquette-box {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.etiquette-box p {
+  width: inherit;
+}
+
+.etiquette-row {
+  display: flex;
+  flex-direction: row;
+  gap: 4px;
+}
+
+
+.groupImage{
+  border-radius: 100%;
+}
+
+.tooltip .tooltiptext{
+  visibility: hidden;
+  width: 120px;
+  background-color: #555;
+  color: #fff;
+  padding: 5px 0;
+  border-radius: 6px;
+  text-align: center;
+  position: absolute;
+  z-index: 1;
+  bottom: 90%;
+  left: 91%;
+  margin-left: -60px;
+
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.tooltip .tooltiptext::after {
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  margin-left: -5px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: #555 transparent transparent transparent;
+}
+
+.tooltip:hover .tooltiptext {
+  visibility: visible;
+  opacity: 1;
+}

@@ -1,0 +1,13 @@
+footer {
+  background-color: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #0a1f58;
+  font-family: "Lexend", serif;
+  height: 120px;
+  width: 100%;
+  position: fixed;
+  left: 0;
+  bottom: 0;
+}
