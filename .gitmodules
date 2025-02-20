@@ -1,0 +1,3 @@
+[submodule "datacratie"]
+	path = datacratie
+	url = https://gitlab.com/HakeemMHB/datacratie.git
