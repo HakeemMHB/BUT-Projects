@@ -1,0 +1,62 @@
+nav {
+  position: relative;
+}
+
+nav h1 {
+  font-family: "Merriweather Sans", serif;
+  font-optical-sizing: auto;
+  font-weight: 800;
+  font-style: normal;
+  color: #0a1f58;
+}
+
+.nav-logo {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  flex-grow: 1;
+}
+
+.nav-logo img {
+  width: 75px;
+}
+
+.nav-compte {
+  display: flex;
+  justify-content: flex-end;
+  flex-grow: 1;
+}
+
+.nav-compte img {
+  width: 35px;
+}
+
+.nav-pages {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  font-family: "Lexend", serif;
+}
+
+.nav-pages a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 150px;
+  height: 50px;
+  text-align: center;
+  border-radius: 25px;
+  text-decoration: none;
+  color: #0a1f58;
+  font-size: 0.9rem;
+}
+
+.nav-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px;
+  position: relative;
+}
